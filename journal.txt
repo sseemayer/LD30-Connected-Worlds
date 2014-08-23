@@ -1,0 +1,43 @@
+Day 1, 7:05
+
+Good morning!
+
+I woke up at about 4:00 am today which is 2 hours after the compo starts to read the theme, then did a little brainstorming and went back to bed, now it's 7:05 am I'm in the process of waking up.
+
+My plan is to make a game about "Gravitational slingshots", but misunderstood: Humanity has mounted a giant grappling hook onto the north and south pole that they will use to connect themselves to other celestial objects and pull themselves to an epic space journey :D
+
+Plan is to 
+
+	- Research how to do orbital mechanics in games
+	- Get those implemented
+	- Find some kind of goal to go with the gameplay
+		o A Puzzle/Racing game?
+
+	- Implement that goal
+
+If I have extra time:
+
+	- Graphics
+	- Sound
+	- Multiple levels
+	- Procedural universe generation
+
+Now first for some tea, though.  After the basics are set up.
+I'll be using my DarlingJS base code as announced.
+
+
+
+--------------------------------------------------------------------
+
+Day 1, 8:35
+
+Phew, orbital mechanics seem a little tricky! I wanted to use the real-word data for the celestial objects masses, etc. but so far I still seem to be having some problems of scale. I guess that there is some conversion factor that I'm still missing somewhere so I'll go hunt for it after another small tea break.
+
+On the other hand, I already have some shitty developer graphics for my main actors ready :)
+
+
+--------------------------------------------------------------------
+
+Day 1, 10:14
+
+OK, it's half-working now although I had to give up on my idea of using real-universe measurements - the units of magnitude are just too different to get things working well and it's easier to just fiddle with the magic numbers until the behavior is as intended. Next up: TURRET!
