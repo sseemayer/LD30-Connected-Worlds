@@ -21,6 +21,9 @@ mod.$c 'turret',
 mod.$c 'turretShoot', {}
 mod.$c 'turretShooting', {}
 
+mod.$c 'turretAttached',
+  target: null
+
 mod.$s 'attachPosition',
   $require: ['attach', 'attachPosition', 'pos']
   $update: ['$entity', ($entity) ->
@@ -112,4 +115,36 @@ mod.$s 'turretBoom',
     window.setTimeout (()->
       $world.$remove boom
     ), 100
+  ]
+
+mod.$s 'turretTarget',
+  targets: []
+  $require: ['celestial', 'pos']
+  $addEntity: ($entity) ->
+    @targets.push $entity
+
+  $removeEntity: ($entity) ->
+    @targets.splice targets.indexOf($entity), 1
+
+
+mod.$s 'turretImpact',
+  $require: ['turretShooting', 'pos']
+  $update: ['$entity', 'turretTarget', ($entity, turretTarget) ->
+    myPos = $entity.pos
+
+    for target in turretTarget.targets
+      theirPos = target.pos
+
+      dx = myPos.x - theirPos.x
+      dy = myPos.y - theirPos.y
+      dist_squared = dx * dx + dy * dy
+      dist = Math.sqrt(dist_squared)
+
+      if dist < target.celestial.radius
+        # collided with target
+        $entity.$remove "turretShooting"
+        $entity.$add "turretAttached",
+          target: target
+
+        console.log "Collision with #{target.$name}"
   ]

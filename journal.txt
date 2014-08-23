@@ -78,3 +78,10 @@ Day 1, 14:50
 
 I've implemented my own system for world coordinates that are mapped to DarlingJS ng2D coordinates and that supports a zoom value. Everything is working again except for switching textures for the turret. I'll look through the darlingjs examples whether there is a better way than how I'm currently doing it.
 
+--------------------------------------------------------------------
+
+Day 1, 15:41
+
+Did a workaround to the texture swapping: The explosion effect of the gun is now added as a separate entity. I don't think there will be any real animations for this project so this should be good enough.
+
+Break time!

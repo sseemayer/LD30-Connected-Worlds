@@ -40,6 +40,8 @@ LD.world.$add 'attachPosition'
 LD.world.$add 'turretShoot'
 LD.world.$add 'turretShooting'
 LD.world.$add 'turretBoom'
+LD.world.$add 'turretTarget'
+LD.world.$add 'turretImpact'
 
 
 LD.world.$add 'debugPosition'
@@ -57,6 +59,7 @@ LD.world.$add 'ngPixijsViewPortUpdateCycle'
 
 LD.world.$add 'cameraLookAt'
 LD.world.$add 'cameraWorldToScreen'
+LD.world.$add 'cameraZoomControl'
 
 LD.world.$add 'ngStatsEnd', domId: 'main'
 
@@ -67,7 +70,14 @@ ngResourceLoader.on 'progress', () ->
 ngPixijsResources = LD.world.$add 'ngPixijsResources'
 ngPixijsResources.load 'assets/spritesheets/main.json', ngResourceLoader
 
+zoomEntity = LD.world.$e 'zoom',
+  cameraZoomControl: {}
+  controllable:
+    keyBindings:
+      38: 'cameraZoomIn'
+      40: 'cameraZoomOut'
 
+console.log zoomEntity
 
 sun = LD.world.$e 'sun',
   pos:

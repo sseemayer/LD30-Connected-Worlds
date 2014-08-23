@@ -45,3 +45,24 @@ mod.$s 'cameraWorldToScreen',
 
   ]
 
+mod.$c 'cameraZoomControl',
+  minZoom: 0.01
+  maxZoom: 2
+  rate: 1e-3
+
+mod.$c 'cameraZoomIn', {}
+mod.$c 'cameraZoomOut', {}
+
+mod.$s 'cameraZoomControl',
+  $require: ['cameraZoomControl']
+  $update: ['$entity', 'cameraWorldToScreen', '$time', ($entity, cameraWorldToScreen, $time) ->
+
+    cwts = cameraWorldToScreen
+
+    if $entity.cameraZoomIn then cwts.zoom += $entity.cameraZoomControl.rate * $time
+    if $entity.cameraZoomOut then cwts.zoom -= $entity.cameraZoomControl.rate * $time
+
+    if cwts.zoom < $entity.cameraZoomControl.minZoom then cwts.zoom = $entity.cameraZoomControl.minZoom
+    if cwts.zoom > $entity.cameraZoomControl.maxZoom then cwts.zoom = $entity.cameraZoomControl.maxZoom
+
+  ]
