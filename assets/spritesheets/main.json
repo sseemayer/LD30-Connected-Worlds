@@ -2,46 +2,118 @@
 
 "earth.png":
 {
-	"frame": {"x":132,"y":52,"w":62,"h":60},
+	"frame": {"x":174,"y":2,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":62,"h":60},
-	"sourceSize": {"w":62,"h":60},
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "gun.png":
 {
-	"frame": {"x":132,"y":2,"w":76,"h":48},
+	"frame": {"x":392,"y":224,"w":52,"h":42},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":40,"y":0,"w":76,"h":48},
+	"spriteSourceSize": {"x":45,"y":2,"w":52,"h":42},
+	"sourceSize": {"w":128,"h":48},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"gun_boom.png":
+{
+	"frame": {"x":392,"y":178,"w":74,"h":44},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":45,"y":1,"w":74,"h":44},
 	"sourceSize": {"w":128,"h":48},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "hook.png":
 {
-	"frame": {"x":210,"y":2,"w":17,"h":18},
+	"frame": {"x":434,"y":2,"w":30,"h":30},
 	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":17,"h":18},
-	"sourceSize": {"w":17,"h":18},
+	"trimmed": true,
+	"spriteSourceSize": {"x":28,"y":16,"w":30,"h":30},
+	"sourceSize": {"w":64,"h":64},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"jupiter.png":
+{
+	"frame": {"x":132,"y":132,"w":128,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":128,"h":126},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"mars.png":
+{
+	"frame": {"x":262,"y":132,"w":128,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":128,"h":126},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"mercury.png":
+{
+	"frame": {"x":304,"y":2,"w":128,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":128,"h":126},
+	"sourceSize": {"w":128,"h":128},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "moon.png":
 {
-	"frame": {"x":196,"y":52,"w":46,"h":46},
+	"frame": {"x":392,"y":130,"w":46,"h":46},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":2,"w":46,"h":46},
 	"sourceSize": {"w":48,"h":48},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"neptune.png":
+{
+	"frame": {"x":2,"y":260,"w":128,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":128,"h":126},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"saturn.png":
+{
+	"frame": {"x":2,"y":2,"w":170,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":2,"w":170,"h":126},
+	"sourceSize": {"w":192,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "sun.png":
 {
-	"frame": {"x":2,"y":2,"w":128,"h":128},
+	"frame": {"x":2,"y":130,"w":128,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"uranus.png":
+{
+	"frame": {"x":132,"y":260,"w":128,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":128,"h":126},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"venus.png":
+{
+	"frame": {"x":262,"y":260,"w":128,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":128,"h":126},
 	"sourceSize": {"w":128,"h":128},
 	"pivot": {"x":0.5,"y":0.5}
 }},
@@ -50,8 +122,8 @@
 	"version": "1.0",
 	"image": "main.png",
 	"format": "RGBA8888",
-	"size": {"w":244,"h":132},
+	"size": {"w":468,"h":388},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:548419d6634b80a1239a16ca5846fabb:617b961d46f15ed28ee4c6a098275c73:03f91ab73e0f4667800419161e658c40$"
+	"smartupdate": "$TexturePacker:SmartUpdate:3292591affe575a8573424e7e5d7c94c:0335a5636619d52e97260ff45bf1c753:03f91ab73e0f4667800419161e658c40$"
 }
 }

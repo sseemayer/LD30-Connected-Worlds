@@ -4,7 +4,8 @@ mod.$c 'attach',
   entity: null
 
 mod.$c 'attachPosition', {}
-mod.$c 'attachScale', {}
+mod.$c 'attachScale',
+  factor: 1.0
 
 mod.$s 'attachPosition',
   $require: ['attach', 'attachPosition', 'ng2D']
@@ -23,7 +24,7 @@ mod.$s 'attachScale',
     mySprite = $entity.ngPixijsSprite.sprite
     theirSprite = $entity.attach.entity.ngPixijsSprite.sprite
 
-    mySprite.scale.x = theirSprite.scale.x
-    mySprite.scale.y = theirSprite.scale.y
+    mySprite.scale.x = theirSprite.scale.x * $entity.attachScale.factor
+    mySprite.scale.y = theirSprite.scale.y * $entity.attachScale.factor
   ]
 

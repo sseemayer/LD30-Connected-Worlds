@@ -73,6 +73,23 @@ sun = LD.world.$e 'sun',
   movingCelestial: {}
 
 
+makePlanet = (name, distanceFromSun, radius, mass, speed) ->
+  LD.world.$e name, 
+    ng2D:
+      x: width * 0.5 + distanceFromSun / LD.const.scale
+      y: height * 0.5
+    ngSprite:
+      name: "#{name}.png"
+      spriteSheetUrl: 'assets/spritesheets/main.json'
+    celestial:
+      radius: radius
+      mass: mass
+    movingCelestial:
+      speed: speed
+
+makePlanet 'mercury', 4e7, 3.4e6, 2.0e20, x: 0, y: 4e6 / LD.const.scale
+makePlanet 'venus', 6e7, 5.4e6, 2.0e21, x: 0, y: 4e6 / LD.const.scale
+
 earth = LD.world.$e 'earth',
   ng2D:
     x: width * 0.5 + 1.2e8 / LD.const.scale
@@ -88,12 +105,10 @@ earth = LD.world.$e 'earth',
 
   cameraTarget: {}
 
-#  movingCelestial:
-#    speed:
-#      x: 0
-#      y: 3e6 / LD.const.scale
-
-#  debugPosition: {}
+  movingCelestial:
+    speed:
+      x: 0
+      y: 2e6 / LD.const.scale
 
 earthTurret = LD.world.$e 'earthTurret',
 
@@ -101,7 +116,7 @@ earthTurret = LD.world.$e 'earthTurret',
     entity: earth
 
   attachPosition: {}
-  attachScale: {}
+  attachScale: factor: 2.3
 
   ng2D: {} # will be done by attaching
   ng2DRotation: {}
@@ -132,14 +147,19 @@ moon = LD.world.$e 'moon',
     radius: 8e5
     mass: 5.0e15
 
-#  movingCelestial:
-#    speed:
-#      x: 0
-#      y: (3e6 - 5.5e5) / LD.const.scale
+  movingCelestial:
+    speed:
+      x: 0
+      y: (3e6 - 5.0e5) / LD.const.scale
 
 #  debugPosition: {}
 
-console.log earthTurret
+makePlanet 'mars', 1.4e8, 3.4e6, 2.0e20, x: 0, y: 4e6 / LD.const.scale
+makePlanet 'jupiter', 2.9e8, 3.4e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
+makePlanet 'saturn', 4.0e8, 3.4e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
+makePlanet 'uranus', 7.4e8, 1.2e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
+makePlanet 'neptune', 1.4e9, 1.2e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
+
 
 LD.world.$start()
 

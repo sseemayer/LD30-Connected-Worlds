@@ -41,3 +41,21 @@ On the other hand, I already have some shitty developer graphics for my main act
 Day 1, 10:14
 
 OK, it's half-working now although I had to give up on my idea of using real-universe measurements - the units of magnitude are just too different to get things working well and it's easier to just fiddle with the magic numbers until the behavior is as intended. Next up: TURRET!
+
+
+--------------------------------------------------------------------
+
+Day 1, 11:06
+
+Had to play around a bit with the sizing of the turret w.r.t the earth but this should work now. Giant turret is now successfully mounted on the north pole and can rotate. Next up: Probably some more planets.
+
+--------------------------------------------------------------------
+
+Day 1, 11:53
+
+All planets of our solar system are painted and added to the game, although they don't have a particularly stable orbit yet. It looks fun though! 
+
+I'll have to look into how to add zoom so that you can see the whole solar system (and beyond!)
+
+Before that, a small break though!
+
