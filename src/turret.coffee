@@ -22,13 +22,13 @@ mod.$c 'turretShoot', {}
 mod.$c 'turretShooting', {}
 
 mod.$s 'attachPosition',
-  $require: ['attach', 'attachPosition', 'ng2D']
+  $require: ['attach', 'attachPosition', 'pos']
   $update: ['$entity', ($entity) ->
 
     if $entity.turretShooting then return
 
-    myNg2D = $entity.ng2D
-    theirNg2D = $entity.attach.entity.ng2D
+    myNg2D = $entity.pos
+    theirNg2D = $entity.attach.entity.pos
 
     attachPosition = $entity.attachPosition
 
@@ -57,14 +57,13 @@ mod.$s 'attachScale',
   ]
 
 mod.$s 'turretShoot',
-  $require: ['ng2D', 'ng2DRotation', 'turret', 'turretShoot']
+  $require: ['pos', 'ng2DRotation', 'turret', 'turretShoot']
   $addEntity: ($entity) ->
     $entity.$add 'turretShooting'
 
 mod.$s 'turretShooting',
-  $require: ['ng2D', 'ng2DRotation', 'turret', 'turretShooting']
+  $require: ['pos', 'ng2DRotation', 'turret', 'turretShooting']
   $addEntity: ($entity) ->
-    console.log "SHOOT"
 
     planetSpeed = $entity.attach.entity.attach.entity.movingCelestial.speed || {x: 0, y: 0}
 
@@ -78,16 +77,15 @@ mod.$s 'turretShooting',
     turretShooting = $entity.turretShooting
     turretShooting._life -= $time
     if turretShooting._life <= 0
-      console.log "END-SHOOT"
       $entity.$remove "turretShooting"
     else
-      ng2D = $entity.ng2D
+      pos = $entity.pos
       ng2DRotation = $entity.ng2DRotation
 
       speed = $entity.turretShooting._speed
 
-      ng2D.x += speed.x * $time
-      ng2D.y += speed.y * $time
+      pos.x += speed.x * $time
+      pos.y += speed.y * $time
 
   ]
 
@@ -97,16 +95,16 @@ mod.$s 'turretBoom',
 
     switchSprite = (entity, newSprite) ->
       entity.$remove 'ngSprite'
-      entity.$add 'ngSprite', 
+      entity.$add 'ngSprite',
         name: newSprite
         spriteSheetUrl: 'assets/spritesheets/main.json'
 
-    console.log "BOOM"
+      console.log entity.ngPixijsSprite
+
     turret = $entity.attach.entity
 
     switchSprite(turret, "gun_boom.png")
 
     window.setTimeout (()->
       switchSprite(turret, "gun.png")
-      console.log "UNBOOM"
     ), 100

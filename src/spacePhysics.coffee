@@ -10,7 +10,7 @@ mod.$c 'movingCelestial',
     y: 0
 
 mod.$s 'gravity',
-  $require: ['celestial', 'ng2D']
+  $require: ['celestial', 'pos']
   _celestials: []
 
   $addEntity: ($entity) ->
@@ -22,11 +22,10 @@ mod.$s 'gravity',
 
   $update: ['$entity', '$time', ($entity, $time) ->
 
-    scale = LD.const.scale
     time = $time / 60   # frame time to real seconds
 
     cel1 = $entity.celestial
-    pos1 = $entity.ng2D
+    pos1 = $entity.pos
 
     if $entity.movingCelestial
       speed = $entity.movingCelestial.speed
@@ -38,11 +37,11 @@ mod.$s 'gravity',
       if other_entity != $entity
 
         cel2 = other_entity.celestial
-        pos2 = other_entity.ng2D
+        pos2 = other_entity.pos
 
         # compute distance (in m)
-        dx = (pos1.x - pos2.x) * scale
-        dy = (pos1.y - pos2.y) * scale
+        dx = (pos1.x - pos2.x)
+        dy = (pos1.y - pos2.y)
         dist_squared = dx * dx + dy * dy
         dist = Math.sqrt(dist_squared)
 

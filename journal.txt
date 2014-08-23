@@ -59,3 +59,22 @@ I'll have to look into how to add zoom so that you can see the whole solar syste
 
 Before that, a small break though!
 
+
+--------------------------------------------------------------------
+
+Day 1, 13:00
+
+Ended up doing turret shooting first. It might be pretty hard to hit planets with this thing. Now another small break and then getting the zoom done!
+
+This probably means crawling through the Pixi.js code.
+
+
+13:30: I think I have a plan. Because pixi.js and Darling.js don't seem to support any kind of zoom as far as I can tell, I'll have to roll my own world -> screen coordinate converter. Good that I implemented my own physics so I don't have to do it now :D
+
+
+--------------------------------------------------------------------
+
+Day 1, 14:50
+
+I've implemented my own system for world coordinates that are mapped to DarlingJS ng2D coordinates and that supports a zoom value. Everything is working again except for switching textures for the turret. I'll look through the darlingjs examples whether there is a better way than how I'm currently doing it.
+

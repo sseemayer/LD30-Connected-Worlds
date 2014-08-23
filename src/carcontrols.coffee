@@ -32,25 +32,25 @@ mod.$s 'carControlRotateCW',
 
 
 mod.$s 'carControlForward',
-  $require: ['ng2DRotation', 'ng2D', 'carControl', 'carControlForward']
+  $require: ['ng2DRotation', 'pos', 'carControl', 'carControlForward']
 
   $update: ['$entity', '$time', ($entity, $time) ->
-    ng2D = $entity.ng2D
+    pos = $entity.pos
     ng2DRotation = $entity.ng2DRotation
     carControl = $entity.carControl
 
-    ng2D.x += Math.cos(ng2DRotation.rotation) * carControl.speed * $time
-    ng2D.y += Math.sin(ng2DRotation.rotation) * carControl.speed * $time
+    pos.x += Math.cos(ng2DRotation.rotation) * carControl.speed * $time
+    pos.y += Math.sin(ng2DRotation.rotation) * carControl.speed * $time
   ]
 
 mod.$s 'carControlReverse',
-  $require: ['ng2DRotation', 'ng2D', 'carControl', 'carControlReverse']
+  $require: ['ng2DRotation', 'pos', 'carControl', 'carControlReverse']
 
   $update: ['$entity', '$time', ($entity, $time) ->
-    ng2D = $entity.ng2D
+    pos = $entity.pos
     ng2DRotation = $entity.ng2DRotation
     carControl = $entity.carControl
 
-    ng2D.x -= Math.cos(ng2DRotation.rotation) * carControl.speed * $time
-    ng2D.y -= Math.sin(ng2DRotation.rotation) * carControl.speed * $time
+    pos.x -= Math.cos(ng2DRotation.rotation) * carControl.speed * $time
+    pos.y -= Math.sin(ng2DRotation.rotation) * carControl.speed * $time
   ]

@@ -4,14 +4,14 @@ mod.$c 'debugPosition', {}
 
 
 mod.$s 'debugPosition',
-  $require: ['debugPosition', 'ng2D']
+  $require: ['debugPosition', 'pos']
   $update: ['$entity', ($entity) ->
-    ng2D = $entity.ng2D
+    pos = $entity.pos
 
     if $entity.movingCelestial
       speed = $entity.movingCelestial.speed
-      console.log "#{$entity.$name}: x=#{ng2D.x} y=#{ng2D.y} dx=#{speed.x} dy=#{speed.y}"
+      console.log "#{$entity.$name}: x=#{pos.x} y=#{pos.y} dx=#{speed.x} dy=#{speed.y}"
     else
-      console.log "#{$entity.$name}: x=#{ng2D.x} y=#{ng2D.y}"
+      console.log "#{$entity.$name}: x=#{pos.x} y=#{pos.y}"
 
   ]

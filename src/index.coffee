@@ -10,7 +10,6 @@ LD.world = darlingjs.w 'ld30', [
   'ngStats'
   'camera'
   'spacePhysics'
-  'celestialSize'
   'control'
   'carControl'
   'turret'
@@ -33,12 +32,7 @@ LD.stage = LD.world.$add 'ngPixijsStage',
   width: width
   height: height
 
-LD.world.$add 'ngPixijsSpriteFactory'
-LD.world.$add 'ngPixijsPositionUpdateCycleWithViewPort'
-LD.world.$add 'ngPixijsRotationUpdateCycle'
-LD.world.$add 'ngPixijsViewPortUpdateCycle'
-
-LD.world.$add 'ngStatsEnd', domId: 'main'
+LD.world.$add 'control'
 
 LD.world.$add 'attachScale'
 LD.world.$add 'attachPosition'
@@ -46,22 +40,29 @@ LD.world.$add 'turretShoot'
 LD.world.$add 'turretShooting'
 LD.world.$add 'turretBoom'
 
-LD.world.$add 'camera'
-LD.world.$add 'control'
+
 LD.world.$add 'debugPosition'
 LD.world.$add 'gravity'
-LD.world.$add 'celestialSize'
 LD.world.$add 'carControlRotateCCW'
 LD.world.$add 'carControlRotateCW'
 LD.world.$add 'carControlForward'
 LD.world.$add 'carControlReverse'
 
 
+LD.world.$add 'ngPixijsSpriteFactory'
+LD.world.$add 'ngPixijsPositionUpdateCycleWithViewPort'
+LD.world.$add 'ngPixijsRotationUpdateCycle'
+LD.world.$add 'ngPixijsViewPortUpdateCycle'
+
+LD.world.$add 'cameraLookAt'
+LD.world.$add 'cameraWorldToScreen'
+
+LD.world.$add 'ngStatsEnd', domId: 'main'
 
 sun = LD.world.$e 'sun',
-  ng2D:
-    x: width * 0.5
-    y: height * 0.5
+  pos:
+    x: 0
+    y: 0
 
   ngSprite:
     name: 'sun.png'
@@ -70,17 +71,17 @@ sun = LD.world.$e 'sun',
 
   celestial:
     radius: 2.0e7
-    mass: 2.0e25
+    mass: 2.0e31
 
 
-  movingCelestial: {}
+#  movingCelestial: {}
 
 
 makePlanet = (name, distanceFromSun, radius, mass, speed) ->
   LD.world.$e name, 
-    ng2D:
-      x: width * 0.5 + distanceFromSun / LD.const.scale
-      y: height * 0.5
+    pos:
+      x: distanceFromSun
+      y: 0
     ngSprite:
       name: "#{name}.png"
       spriteSheetUrl: 'assets/spritesheets/main.json'
@@ -90,13 +91,13 @@ makePlanet = (name, distanceFromSun, radius, mass, speed) ->
     movingCelestial:
       speed: speed
 
-makePlanet 'mercury', 4e7, 3.4e6, 2.0e20, x: 0, y: 4e6 / LD.const.scale
-makePlanet 'venus', 6e7, 5.4e6, 2.0e21, x: 0, y: 4e6 / LD.const.scale
+mercury = makePlanet 'mercury', 8e7, 3.4e6, 2.0e23, x: 0, y: 5.5e6
+venus = makePlanet 'venus', 1e8, 5.4e6, 2.0e21, x: 0, y: 5e6
 
 earth = LD.world.$e 'earth',
-  ng2D:
-    x: width * 0.5 + 1.2e8 / LD.const.scale
-    y: height * 0.5
+  pos:
+    x: 1.5e8
+    y: 0
 
   ngSprite:
     name: 'earth.png'
@@ -104,14 +105,15 @@ earth = LD.world.$e 'earth',
 
   celestial:
     radius: 6.4e6
-    mass: 3.0e22
+    mass: 5.9e24
 
-  cameraTarget: {}
 
   movingCelestial:
     speed:
       x: 0
-      y: 2e6 / LD.const.scale
+      y: 4.5e6
+
+  cameraTarget: {}
 
 earthTurret = LD.world.$e 'earthTurret',
 
@@ -121,7 +123,7 @@ earthTurret = LD.world.$e 'earthTurret',
   attachPosition: {}
   attachScale: factor: 2.3
 
-  ng2D: {} # will be done by attaching
+  pos: {} # will be done by attaching
   ng2DRotation: {}
 
   ngSprite:
@@ -139,9 +141,10 @@ earthTurretHook = LD.world.$e 'earthTurretHook',
     entity: earthTurret
 
   attachPosition:
-    rotArm: 10
+    rotArm: 6e6
+  attachScale: {}
 
-  ng2D: {}          # will be set by attaching
+  pos: {}          # will be set by attaching
   ng2DRotation: {}  # will be set by attaching
 
   ngSprite:
@@ -155,34 +158,33 @@ earthTurretHook = LD.world.$e 'earthTurretHook',
   turret: {}
 
 
-moon = LD.world.$e 'moon',
-  ng2D:
-    x: width * 0.50 + (1.2e8 + 7e6) / LD.const.scale
-    y: height * 0.5
+#moon = LD.world.$e 'moon',
+#  pos:
+#    x: 1.2e8 + 7e6
+#    y: 0
+#
+#  ng2DRotation: {}
+#
+#  ngSprite:
+#    name: 'moon.png'
+#    spriteSheetUrl: 'assets/spritesheets/main.json'
+#
+#  celestial:
+#    radius: 8e5
+#    mass: 5.0e15
+#
+#  movingCelestial:
+#    speed:
+#      x: 0
+#      y: 3e6 - 5.0e5
+#
+##  debugPosition: {}
 
-  ng2DRotation: {}
-
-  ngSprite:
-    name: 'moon.png'
-    spriteSheetUrl: 'assets/spritesheets/main.json'
-
-  celestial:
-    radius: 8e5
-    mass: 5.0e15
-
-  movingCelestial:
-    speed:
-      x: 0
-      y: (3e6 - 5.0e5) / LD.const.scale
-
-#  debugPosition: {}
-
-makePlanet 'mars', 1.4e8, 3.4e6, 2.0e20, x: 0, y: 4e6 / LD.const.scale
-makePlanet 'jupiter', 2.9e8, 3.4e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
-makePlanet 'saturn', 4.0e8, 3.4e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
-makePlanet 'uranus', 7.4e8, 1.2e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
-makePlanet 'neptune', 1.4e9, 1.2e7, 2.0e20, x: 0, y: 4e6 / LD.const.scale
-
+mars = makePlanet 'mars', 2.0e8, 3.4e6, 2.0e20, x: 0, y: 4e6
+jupiter = makePlanet 'jupiter', 2.9e8, 3.4e7, 2.0e20, x: 0, y: 3.2e6
+saturn = makePlanet 'saturn', 4.0e8, 3.4e7, 2.0e20, x: 0, y: 2.6e6
+uranus = makePlanet 'uranus', 7.4e8, 1.2e7, 2.0e20, x: 0, y: 1.8e6
+neptune = makePlanet 'neptune', 9.0e8, 1.2e7, 2.0e20, x: 0, y: 1.6e6
 
 LD.world.$start()
 
