@@ -20,16 +20,16 @@
 },
 "gun_boom.png":
 {
-	"frame": {"x":392,"y":178,"w":74,"h":44},
+	"frame": {"x":392,"y":178,"w":40,"h":44},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":45,"y":1,"w":74,"h":44},
+	"spriteSourceSize": {"x":79,"y":1,"w":40,"h":44},
 	"sourceSize": {"w":128,"h":48},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "hook.png":
 {
-	"frame": {"x":434,"y":2,"w":30,"h":30},
+	"frame": {"x":392,"y":268,"w":30,"h":30},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":28,"y":16,"w":30,"h":30},
@@ -122,8 +122,8 @@
 	"version": "1.0",
 	"image": "main.png",
 	"format": "RGBA8888",
-	"size": {"w":468,"h":388},
+	"size": {"w":446,"h":388},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3292591affe575a8573424e7e5d7c94c:0335a5636619d52e97260ff45bf1c753:03f91ab73e0f4667800419161e658c40$"
+	"smartupdate": "$TexturePacker:SmartUpdate:13b24810002ba0f5ac5aa5ddc53e1868:70ef8087afea4f4b62074f4ba5dd28d7:03f91ab73e0f4667800419161e658c40$"
 }
 }

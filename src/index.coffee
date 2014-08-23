@@ -5,6 +5,7 @@ width = 800
 height = 600
 
 LD.world = darlingjs.w 'ld30', [
+  'ngResources'
   'ngFlatland'
   'ngPixijsAdapter'
   'ngStats'
@@ -58,6 +59,15 @@ LD.world.$add 'cameraLookAt'
 LD.world.$add 'cameraWorldToScreen'
 
 LD.world.$add 'ngStatsEnd', domId: 'main'
+
+ngResourceLoader = LD.world.$add 'ngResourceLoader'
+ngResourceLoader.on 'progress', () ->
+  console.log "#{ngResourceLoader.availableCount} / #{ngResourceLoader.totalCount}"
+
+ngPixijsResources = LD.world.$add 'ngPixijsResources'
+ngPixijsResources.load 'assets/spritesheets/main.json', ngResourceLoader
+
+
 
 sun = LD.world.$e 'sun',
   pos:
@@ -186,5 +196,7 @@ saturn = makePlanet 'saturn', 4.0e8, 3.4e7, 2.0e20, x: 0, y: 2.6e6
 uranus = makePlanet 'uranus', 7.4e8, 1.2e7, 2.0e20, x: 0, y: 1.8e6
 neptune = makePlanet 'neptune', 9.0e8, 1.2e7, 2.0e20, x: 0, y: 1.6e6
 
-LD.world.$start()
+ngResourceLoader.on 'complete', () ->
+  console.log "Finished loading"
+  LD.world.$start()
 

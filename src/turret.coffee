@@ -15,7 +15,7 @@ mod.$c 'attachScale',
 
 
 mod.$c 'turret',
-  speed: 2
+  speed: 1e6
   flightDistance: 1000
 
 mod.$c 'turretShoot', {}
@@ -68,8 +68,8 @@ mod.$s 'turretShooting',
     planetSpeed = $entity.attach.entity.attach.entity.movingCelestial.speed || {x: 0, y: 0}
 
     $entity.turretShooting._speed =
-      x: planetSpeed.x * 0.1 + $entity.turret.speed * Math.cos($entity.ng2DRotation.rotation)
-      y: planetSpeed.y * 0.1 + $entity.turret.speed * Math.sin($entity.ng2DRotation.rotation)
+      x: planetSpeed.x * 0.01 + $entity.turret.speed * Math.cos($entity.ng2DRotation.rotation)
+      y: planetSpeed.y * 0.01 + $entity.turret.speed * Math.sin($entity.ng2DRotation.rotation)
 
     $entity.turretShooting._life = $entity.turret.flightDistance
 
@@ -91,20 +91,25 @@ mod.$s 'turretShooting',
 
 mod.$s 'turretBoom',
   $require: ['attach', 'turretShoot']
-  $addEntity: ($entity) ->
-
-    switchSprite = (entity, newSprite) ->
-      entity.$remove 'ngSprite'
-      entity.$add 'ngSprite',
-        name: newSprite
-        spriteSheetUrl: 'assets/spritesheets/main.json'
-
-      console.log entity.ngPixijsSprite
-
+  $addEntity: ['$entity', "$world", ($entity, $world) ->
     turret = $entity.attach.entity
 
-    switchSprite(turret, "gun_boom.png")
+    boom = $world.$e 'boom',
+      attach:
+        entity: turret
+
+      attachPosition: {}
+      attachScale: {}
+
+      pos: {}          # will be set by attaching
+      ng2DRotation: {}  # will be set by attaching
+
+      ngSprite:
+        name: 'gun_boom.png'
+        spriteSheetUrl: 'assets/spritesheets/main.json'
+
 
     window.setTimeout (()->
-      switchSprite(turret, "gun.png")
+      $world.$remove boom
     ), 100
+  ]
