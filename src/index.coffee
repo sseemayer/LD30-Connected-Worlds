@@ -42,6 +42,9 @@ LD.world.$add 'ngStatsEnd', domId: 'main'
 
 LD.world.$add 'attachScale'
 LD.world.$add 'attachPosition'
+LD.world.$add 'turretShoot'
+LD.world.$add 'turretShooting'
+LD.world.$add 'turretBoom'
 
 LD.world.$add 'camera'
 LD.world.$add 'control'
@@ -130,6 +133,26 @@ earthTurret = LD.world.$e 'earthTurret',
     keyBindings:
       37: 'carControlRotateCCW'
       39: 'carControlRotateCW'
+
+earthTurretHook = LD.world.$e 'earthTurretHook',
+  attach:
+    entity: earthTurret
+
+  attachPosition:
+    rotArm: 10
+
+  ng2D: {}          # will be set by attaching
+  ng2DRotation: {}  # will be set by attaching
+
+  ngSprite:
+    name: 'hook.png'
+    spriteSheetUrl: 'assets/spritesheets/main.json'
+
+  controllable:
+    keyBindings:
+      32: 'turretShoot'
+
+  turret: {}
 
 
 moon = LD.world.$e 'moon',

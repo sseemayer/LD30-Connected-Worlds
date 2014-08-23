@@ -47,7 +47,7 @@ mod.$s 'control',
     if ((not entities) or entities.length == 0) then return false
 
     for [$entity, binding] in entities
-      $entity.$add binding
+      if not $entity[binding] then $entity.$add binding
 
     e.preventDefault()
     false
