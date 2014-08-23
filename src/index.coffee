@@ -42,6 +42,7 @@ LD.world.$add 'turretShooting'
 LD.world.$add 'turretBoom'
 LD.world.$add 'turretTarget'
 LD.world.$add 'turretImpact'
+LD.world.$add 'turretPull'
 
 
 LD.world.$add 'debugPosition'
@@ -111,8 +112,8 @@ makePlanet = (name, distanceFromSun, radius, mass, speed) ->
     movingCelestial:
       speed: speed
 
-mercury = makePlanet 'mercury', 8e7, 3.4e6, 2.0e23, x: 0, y: 5.5e6
-venus = makePlanet 'venus', 1e8, 5.4e6, 2.0e21, x: 0, y: 5e6
+mercury = makePlanet 'mercury', 8e7, 3.4e6, 2.0e24, x: 0, y: 5.5e6
+venus = makePlanet 'venus', 1e8, 5.4e6, 2.0e24, x: 0, y: 5e6
 
 earth = LD.world.$e 'earth',
   pos:
@@ -200,11 +201,11 @@ earthTurretHook = LD.world.$e 'earthTurretHook',
 #
 ##  debugPosition: {}
 
-mars = makePlanet 'mars', 2.0e8, 3.4e6, 2.0e20, x: 0, y: 4e6
-jupiter = makePlanet 'jupiter', 2.9e8, 3.4e7, 2.0e20, x: 0, y: 3.2e6
-saturn = makePlanet 'saturn', 4.0e8, 3.4e7, 2.0e20, x: 0, y: 2.6e6
-uranus = makePlanet 'uranus', 7.4e8, 1.2e7, 2.0e20, x: 0, y: 1.8e6
-neptune = makePlanet 'neptune', 9.0e8, 1.2e7, 2.0e20, x: 0, y: 1.6e6
+mars = makePlanet 'mars', 2.0e8, 3.4e6, 2.0e24, x: 0, y: 4e6
+jupiter = makePlanet 'jupiter', 2.9e8, 3.4e7, 2.0e24, x: 0, y: 3.2e6
+saturn = makePlanet 'saturn', 4.0e8, 3.4e7, 2.0e24, x: 0, y: 2.6e6
+uranus = makePlanet 'uranus', 7.4e8, 1.2e7, 2.0e24, x: 0, y: 1.8e6
+neptune = makePlanet 'neptune', 9.0e8, 1.2e7, 2.0e24, x: 0, y: 1.6e6
 
 ngResourceLoader.on 'complete', () ->
   console.log "Finished loading"

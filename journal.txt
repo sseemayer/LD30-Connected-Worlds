@@ -85,3 +85,10 @@ Day 1, 15:41
 Did a workaround to the texture swapping: The explosion effect of the gun is now added as a separate entity. I don't think there will be any real animations for this project so this should be good enough.
 
 Break time!
+
+--------------------------------------------------------------------
+
+Day 1, 16:41
+
+Added the actual grappling hook pulling effect and played around with planetary masses for a while. Moving around with a grappling hook is interesting, but I'm still not sure what to do gameplay-wise. Probably different victory conditions like 'make planet crash into sun' or 'leave solar system', etc.
+

@@ -17,12 +17,15 @@ mod.$c 'attachScale',
 mod.$c 'turret',
   speed: 1e6
   flightDistance: 1000
+  attachedTime: 1000
+  pullForce: 1e28
 
 mod.$c 'turretShoot', {}
 mod.$c 'turretShooting', {}
 
 mod.$c 'turretAttached',
   target: null
+  time: 0
 
 mod.$s 'attachPosition',
   $require: ['attach', 'attachPosition', 'pos']
@@ -145,6 +148,42 @@ mod.$s 'turretImpact',
         $entity.$remove "turretShooting"
         $entity.$add "turretAttached",
           target: target
+          time: $entity.turret.attachedTime
 
-        console.log "Collision with #{target.$name}"
+  ]
+
+mod.$s 'turretPull',
+  $require: ['turretAttached', 'pos', 'turret']
+  $update: ['$entity', '$time', ($entity, $time) ->
+
+    force = $entity.turret.pullForce
+    turretAttached = $entity.turretAttached
+    target = turretAttached.target
+
+    planet = $entity.attach.entity.attach.entity
+
+    turretAttached.time -= $time
+    if turretAttached.time <= 0
+      $entity.$remove 'turretAttached'
+
+    console.log("Pull #{planet.$name} towards #{target.$name}")
+
+    myPos = $entity.pos
+    theirPos = target.pos
+
+    dx = theirPos.x - myPos.x
+    dy = theirPos.y - myPos.y
+    dist = Math.sqrt(dx * dx + dy * dy)
+
+    mySpeed = planet.movingCelestial.speed
+    myMass = planet.celestial.mass
+    mySpeed.x += dx / dist * force / myMass * $time
+    mySpeed.y += dy / dist * force / myMass * $time
+
+    if target.movingCelestial
+      theirSpeed = target.movingCelestial.speed
+      theirMass = target.celestial.mass
+      theirSpeed.x -= dx / dist * force / theirMass * $time
+      theirSpeed.y -= dy / dist * force / theirMass * $time
+
   ]
