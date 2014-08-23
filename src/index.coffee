@@ -47,11 +47,10 @@ LD.world.$add 'turretPull'
 
 LD.world.$add 'debugPosition'
 LD.world.$add 'gravity'
+LD.world.$add 'collisions'
+
 LD.world.$add 'carControlRotateCCW'
 LD.world.$add 'carControlRotateCW'
-LD.world.$add 'carControlForward'
-LD.world.$add 'carControlReverse'
-
 
 LD.world.$add 'ngPixijsSpriteFactory'
 LD.world.$add 'ngPixijsPositionUpdateCycleWithViewPort'

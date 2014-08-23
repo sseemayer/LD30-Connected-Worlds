@@ -58,6 +58,8 @@ mod.$s 'attachScale',
     mySprite = $entity.ngPixijsSprite.sprite
     theirSprite = $entity.attach.entity.ngPixijsSprite.sprite
 
+    if not theirSprite then return
+
     mySprite.scale.x = theirSprite.scale.x * $entity.attachScale.factor
     mySprite.scale.y = theirSprite.scale.y * $entity.attachScale.factor
   ]
@@ -127,7 +129,7 @@ mod.$s 'turretTarget',
     @targets.push $entity
 
   $removeEntity: ($entity) ->
-    @targets.splice targets.indexOf($entity), 1
+    @targets.splice @targets.indexOf($entity), 1
 
 
 mod.$s 'turretImpact',

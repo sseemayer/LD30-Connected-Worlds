@@ -60,4 +60,33 @@ mod.$s 'gravity',
           speed.y -= (dy/dist) * gravity / cel1.mass * time
   ]
 
+mod.$s 'collisions',
+  $require: ['celestial', 'movingCelestial', 'pos']
+  $update: ['$entity', 'gravity', '$world', ($entity, gravity, $world) ->
+    if not $entity then return
 
+    cel1 = $entity.celestial
+    pos1 = $entity.pos
+
+    for other_entity in gravity._celestials
+      if other_entity != $entity
+        if not other_entity then return
+
+        cel2 = other_entity.celestial
+        pos2 = other_entity.pos
+
+        # compute distance (in m)
+        dx = (pos1.x - pos2.x)
+        dy = (pos1.y - pos2.y)
+        dist_squared = dx * dx + dy * dy
+        dist = Math.sqrt(dist_squared)
+
+        if dist < cel1.radius + cel2.radius
+          console.log "#{$entity.$name} collided with #{other_entity.$name}"
+          console.log $world
+
+          if $entity.celestial.mass > other_entity.celestial.mass
+            $world.$remove other_entity
+          else
+            $world.$remove $entity
+  ]

@@ -92,3 +92,13 @@ Day 1, 16:41
 
 Added the actual grappling hook pulling effect and played around with planetary masses for a while. Moving around with a grappling hook is interesting, but I'm still not sure what to do gameplay-wise. Probably different victory conditions like 'make planet crash into sun' or 'leave solar system', etc.
 
+--------------------------------------------------------------------
+
+Day 1, 17:19
+
+I've decided on a simple way of adding a goal to the game: At the start, two celestials are picked at random and the goal will be to get those two celestials to crash into another. For every combination of celestials, we record the best time and number of grappling hooks used.
+
+Will do another try at getting an animation for an explosion effect into the game.
+
+
+
